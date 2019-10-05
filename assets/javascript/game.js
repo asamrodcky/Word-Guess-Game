@@ -1,7 +1,8 @@
 $(document).ready(function(){
 
     // Create list of words to choose from 
-    var words = ["apple","orange","banana","kiwi","grapefruit"];
+    var words = ["regifter","manhands","yadayadayada","pretzels","newman",
+    "jerry","kramer","elaine","george","closetalker"];
     
     // Grab a random word from that list
     var chosenWord = words[Math.floor(Math.random()* words.length)];
@@ -10,45 +11,81 @@ $(document).ready(function(){
     
     // Create a variable w string "_" to be repeated for however many
     // letters the chosenWord has
-    var space = "_ ";
-    var spaces = space.repeat(chosenWord.length);
-    $("#spaces").text(spaces);
+    // var space = "_";
+    var spaces = new Array(chosenWord.length).fill("_");
+    $("#spaces").text(spaces.join(" "));
     
-    var noGuesses = 10;
+    var noGuesses = 6;
     var wins = 0;
     var losses = 0;
+    var userGuess
+    var lettersPressed = []
+    var gameFinished = false
+    var theme = new Audio("../images/seinfeld-theme_1.mp3")
+
+    // Reset function resets number of guesses and the chosenWord
+    function reset(){
+        noGuesses=6;
+        chosenWord = words[Math.floor(Math.random()* words.length)];
+        spaces = new Array(chosenWord.length).fill("_");
+        $("#spaces").text(spaces.join(" "));
+        gameFinished = false
+        lettersPressed = []
+        console.log(chosenWord)
+    };
+    
+    $(".reset").click(function(){
+        reset();
+    })
 
     // userGuess = user input
+
     document.onkeyup = function(event) {
-    var userGuess = event.key;
+    
+    if(gameFinished === true){
+        reset();
+    }
+
+    userGuess = event.key;
     $("#userGuess").text("You guessed: " + userGuess);
 
-    function reset(){
-        noGuesses=10;
-        chosenWord = words[Math.floor(Math.random()* words.length)];
-    };
+    console.log(spaces.join(""))
 
+    if(lettersPressed.indexOf(userGuess)!== -1){
+        alert("You've already guessed that letter!")
+    }
+    else{
+        lettersPressed.push(userGuess)
+    }
 
     // if user input lies in the chosen word do...
         if(chosenWord.indexOf(userGuess) !== -1){
-        
-            spaces = 
+            
+            for(var i = 0; i < chosenWord.length; i++){
+
+                if(chosenWord[i]===userGuess){
+                    spaces[i] = userGuess;
+                }
+
+                $("#spaces").text(spaces.join(" "));
+            }
+
+            // else if the variable spaces is the same as the chosenWord
+            // increase # of wins by 1, reset # of guesses, and reset chosen word
+            if(spaces.join("") == chosenWord){
+                wins++;
+                alert("YOU WON!")
+                gameFinished = true;
+
+            }
 
             // Check
             console.log("Y");
             console.log(noGuesses);
         }
-
-        // else if the variable spaces is the same as the chosenWord
-        // increase # of wins by 1, reset # of guesses, and reset chosen word
-        else if (spaces === chosenWord){
-            wins++;
+        else if(event.keyCode===13){
             reset();
-
-            // check
-            console.log("# of wins: " + wins);
         }
-
     // if user input does not lie in the chosen word, decrease
     // number of guess by 1
         else{
@@ -62,6 +99,7 @@ $(document).ready(function(){
             // reset number of guesses, and reset chosenWord
             if(noGuesses===0){
                 losses++;
+                theme.play();
                 reset();
 
                 // Check

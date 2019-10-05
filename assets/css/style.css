@@ -1,0 +1,54 @@
+*{
+    box-sizing:border-box;
+}
+
+/* Body fonts, background image, dimensions make sure to take up whole page  */
+body{
+    font-family:'Arial', 'Helvetica Neue', Helvetica, sans-serif;
+    background-image:url("../images/Seinfeld-background.jpeg");
+    margin:0;
+    width:100%;
+    height:100%;
+}
+
+/* Fonts for h1 tags */
+h1{
+    font-family: 'Georgia', Times, Times New Roman, serif;
+}
+
+.header{
+    background-image: url("../images/Seinfeld-Banner.jpg");
+    height: 250px;
+    width: 1140px;
+    opacity: 0.9;
+}
+
+.title{
+    background: white;
+    width:100%;
+    text-align: center;
+    margin-bottom: 20px;
+    opacity: 0.9;
+}
+
+.game{
+    background:white;
+    width:90%;
+    margin-bottom: 20px;
+    opacity: 0.9;
+}
+
+#spaces{
+    text-align: center;
+}
+
+.data{
+    padding:50px;
+    border-style: solid;
+    border-color:grey;
+}
+
+.btn{
+    float: right;
+    margin-bottom: 5px;
+}
