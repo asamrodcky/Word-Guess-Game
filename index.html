@@ -19,6 +19,8 @@
     <!-- Linking style CSS  -->
     <link rel="stylesheet" type="text/css" href="assets/css/style.css">
 
+
+
 </head>
 <body>
 
@@ -31,18 +33,22 @@
                 <h1>Word Guess Game</h1>
             </div>
         </div>
+        <audio controls>
+            <source src="assets/images/seinfeld-theme_1.mp3" type="audio/mpeg">
+        </audio>
         <div class="row">
             <div class="col-md-12 game">
                 <div class="game" id="spaces"></div>
                 <hr>
                 <div class="row">
                     <div class="col-md-4 data">
+                        <div class="game">Guess the word!</div>
                         <div class="game" id="noGuesses">Number of Guesses Remaining: 6</div>
                     </div>  
                     <div class="col-md-4 data">
-                        <div class="game" id="noWins">Wins: 0</div>
+                        <div class="game" id="winLoss">Win-Loss</div>
                         <br>
-                        <div class="game" id="noLosses">Losses: 0</div>
+                        <div class="game" id="score">0-0</div>
                     </div>
                     <div class="col-md-4 data">
                         <div class="game" id="userGuess">You guessed: </div>

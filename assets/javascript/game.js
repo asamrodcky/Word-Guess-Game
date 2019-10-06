@@ -1,8 +1,8 @@
 $(document).ready(function(){
 
     // Create list of words to choose from 
-    var words = ["regifter","manhands","yadayadayada","pretzels","newman",
-    "jerry","kramer","elaine","george","closetalker"];
+    var words = ["regifter","yadayadayada","pretzels","newman",
+    "jerry","kramer","elaine","george"];
     
     // Grab a random word from that list
     var chosenWord = words[Math.floor(Math.random()* words.length)];
@@ -21,7 +21,6 @@ $(document).ready(function(){
     var userGuess
     var lettersPressed = []
     var gameFinished = false
-    var theme = new Audio("../images/seinfeld-theme_1.mp3")
 
     // Reset function resets number of guesses and the chosenWord
     function reset(){
@@ -99,7 +98,7 @@ $(document).ready(function(){
             // reset number of guesses, and reset chosenWord
             if(noGuesses===0){
                 losses++;
-                theme.play();
+                alert("You lost! :(")
                 reset();
 
                 // Check
@@ -110,8 +109,7 @@ $(document).ready(function(){
 
     // Replace all divs with specific text
     $("#noGuesses").text("Number of Guesses Remaining: " + noGuesses)
-    $("#noWins").text("Wins: " + wins)
-    $("#noLosses").text("Losses: " + losses)
+    $("#score").text(wins + "-" +losses)
     }
 
 })
